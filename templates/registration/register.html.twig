@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {{ include('elements/header.html.twig') }}
+
+    <div class="d-flex container container_optimalHeight align-items-center">
+        <div class="d-flex container-fluid justify-content-center h-70">
+            {{ form_start(registrationForm, { 'attr': {'class': 'd-flex flex-column w-50 justify-content-center'} }) }}
+            <h1 class="h1 mb-3 font-weight-normal text-center">Регистрация</h1>
+            {% set formErrors = registrationForm.vars.errors.form.getErrors(true) %}
+            {% if formErrors|length %}
+                <div class="alert alert-danger">
+                    <label>Исправте следующие ошибки:</label>
+                    <ul>
+                        {% for error in formErrors %}
+                            <li>{{ error.message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <div class="row mb-3 d-flex justify-content-around">
+                {{ form_label(registrationForm.email, registrationForm.name, { 'label_attr': {'class': 'text-center label_width'} }) }}
+                {{ form_widget(registrationForm.email, { 'attr': {'class': 'input_width form-control'} }) }}
+            </div>
+            <div class="row mb-3 d-flex justify-content-around">
+                {{ form_label(registrationForm.name, registrationForm.name, { 'label_attr': {'class': 'text-center label_width'} }) }}
+                {{ form_widget(registrationForm.name, { 'attr': {'class': 'input_width form-control'} }) }}
+            </div>
+            <div class="row mb-3 d-flex justify-content-around">
+                {{ form_label(registrationForm.plainPassword.first, registrationForm.name, { 'label_attr': {'class': 'text-center label_width'} }) }}
+                {{ form_widget(registrationForm.plainPassword.first, { 'attr': {'class': 'input_width form-control'} }) }}
+            </div>
+            <div class="row mb-3 d-flex justify-content-around">
+                {{ form_label(registrationForm.plainPassword.second, registrationForm.name, { 'label_attr': {'class': 'text-center label_width'} }) }}
+                {{ form_widget(registrationForm.plainPassword.second, { 'attr': {'class': 'input_width form-control'} }) }}
+            </div>
+            <div class="row mb-3 d-flex justify-content-around">
+                {{ form_label(registrationForm.agreeTerms, registrationForm.name) }}
+                {{ form_widget(registrationForm.agreeTerms, {'attr': {'onMouseDown':'this.isChecked=this.checked','onClick':'this.checked=!this.isChecked;'}}) }}
+            </div>
+            <div class="row justify-content-center mt-3">
+                <button type="submit" class="btn btn-lg btn-dark col-6 btn_style">Зарегистрироваться</button>
+            </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

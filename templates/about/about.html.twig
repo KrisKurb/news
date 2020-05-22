@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}About{% endblock %}
+
+{% block body %}
+    {{ include('elements/header.html.twig') }}
+    <div class="news d-flex flex-column align-items-center">
+        <h1 class="display-4 text-center">Новости</h1>
+        <div class="alert alert-info col-6 mt-5 font_text_about" role="alert">
+            News - сайт о различных новостях. Пользователи со всего мира будут осведомлены какой-либо информацией :)
+        </div>
+    </div>
+{% endblock %}

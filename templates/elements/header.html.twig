@@ -4,8 +4,17 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav justify-content-end col-6 col-xl-5">
                 {% if app.user %}
-                    <li class="nav-item default_font col-6 col-xl-4 p-0">
-                        <a class="nav-link text-truncate" href="#">Hello, {{ app.user.name }}!</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item default_font col-6 col-xl-4 p-0">
+                            <a class="nav-link text-truncate" href="{{ path('easyadmin') }}">Hello, {{ app.user.name }}!</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item default_font col-6 col-xl-4 p-0">
+                            <a class="nav-link text-truncate" href="#">Hello, {{ app.user.name }}!</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item default_font col-3">
+                        <a class="nav-link" href="{{ path('about') }}">О нас</a>
                     </li>
                     <li class="nav-item default_font col-3">
                         <a class="nav-link" href="{{ path('app_logout') }}">Выйти</a>

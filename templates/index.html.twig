@@ -4,5 +4,29 @@
 
 {% block body %}
     {{ include('elements/header.html.twig') }}
-    <h1 class="display-4 text-center">Главная</h1>
+
+    <div class="container">
+        <div class="row mt-5 mb-3 justify-content-center">
+            <h1 class="display-4">
+                Статьи
+            </h1>
+        </div>
+        <div class="container">
+            <div class="d-flex justify-content-start flex-wrap">
+                {% for post in posts %}
+                    <div class="card ml-3 mt-3" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ post.createAt ? post.createAt|date('Y-m-d H:i:s') : '' }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Прокомментировали: {{ post.countComments }}</h6>
+                            <p class="card-text text-truncate">{{ post.annotation }}</p>
+                            <a href="{{  path('post_show', {'id': post.id}) }}" class="card-link">Перейти</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <h2 class="text-center">Нету продуктов</h2>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,29 @@
+easy_admin:
+    user:
+        display_name: true
+        display_avatar: true
+        name_property_path: 'fullName'
+    entities:
+        # List the entity class name you want to manage
+        Post:
+            class: App\Entity\Post
+            list:
+                fields: ['title', 'text', 'annotation', 'create_at', 'views', 'is_published']
+            show:
+                fields: ['title', 'text', 'annotation', 'create_at', 'views', 'is_published']
+            form:
+                fields: ['title', 'text', 'annotation', 'is_published']
+        User:
+            class: App\Entity\User
+            form:
+                fields:
+                    - name
+                    - email
+        Comment:
+            class: App\Entity\Comment
+            list:
+                fields: ['id', 'create_at', 'text', 'post', 'user.name']
+            form:
+                fields:
+                    - text
+                    - post
